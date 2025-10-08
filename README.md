@@ -43,14 +43,17 @@ We assembled and used two industrial datasets collected on production lines:
 
 ---
 
-## Training & Environment (as reported)
+## Training & Environment
 
-- **Framework:** PyTorch  
+YPSDD-Net was developed and tested under the following environment:
+
+- **Framework:** PyTorch: ≥ 2.1 (CUDA: 11.8 + cuDNN 8 recommended)
 - **Hardware used in experiments:** Intel Core i9-14900HX CPU and NVIDIA GeForce RTX 4080 (16 GB)  
 - **Input size:** 512×512 (images were downsampled from 1024×1024 patches)  
 - **Training schedule (two-stage):**  
   1. **Stage 1 (Main detection branch):** end-to-end training on abundant base samples to learn structural priors — reported to run **500 epochs**, batch size **4**, `num_workers=4`.  
   2. **Stage 2 (Few-shot adaptation):** freeze backbone, use a 3-shot 1-way episodic setup to fine-tune CAHead and FAB (support–query episodes). FAB is removed at inference.
+
 
 ---
 
@@ -62,6 +65,6 @@ A reviewer-only checkpoint is included in this private release as `models/ypsdd_
 
 ---
 
-## Reported results (high level)
+## Reported results
 
 YPSDD-Net demonstrates strong performance on industrial yarn and preform defect detection benchmarks reported in the paper; for example **AP50 ≈ 96.7% on yarn defects** and **AP50 ≈ 90.7% on preform defects**, while outperforming several recent baselines in ablation and comparative studies.
